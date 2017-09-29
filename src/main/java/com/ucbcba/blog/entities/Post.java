@@ -1,7 +1,9 @@
 package com.ucbcba.blog.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ public class Post {
     private Integer id;
 
     @NotNull
+    @Size(min = 1, message = "Debe ser mayor a 1")
     private String title;
     @NotNull
     private String text;
@@ -30,7 +33,9 @@ public class Post {
     private Integer likes = 0 ;
 
 
-
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -71,5 +76,13 @@ public class Post {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -9,8 +9,10 @@
 
 <b>Titulo:</b><p th:text="${post.title}"></p>
 <b>Texto:</b><p th:text="${post.text}"></p>
+<b>Category:</b><p th:text="${post.category.name}"></p>
+
 <b>Likes:</b><p th:text="${post.likes}"></p>
-<a href="/like">Like</a>
+<a th:href="${'/post/like/'+post.id}">Like</a>
 <br></br>
 <b>Comentario:</b>
 <form class="form-horizontal" th:object="${comment}" th:action="@{/comment}" method="post">
